@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | 上田達大</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome (Icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- Base Variables & Reset --- */
+        :root {
+            --primary-color: #0056b3; /* Deep Blue */
+            --accent-color: #00a8cc;  /* Cyan Blue */
+            --bg-color: #f4f8fb;      /* Very Light Blue Gray */
+            --white: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --section-padding: 80px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- Components --- */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        /* --- About Section --- */
+        .about {
+            padding: var(--section-padding);
+            background-color: var(--white);
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        /* Image Placeholder using CSS */
+        .profile-icon {
+            width: 180px;
+            height: 180px;
+            background: #e0eaf5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.15);
+            border: 4px solid var(--white);
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            max-width: 500px;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .profile-univ {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-univ i {
+            color: var(--accent-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background-color: #f0f8ff;
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #dbeafe;
+        }
+
+        /* --- Gakuchika (Student Efforts) Section --- */
+        .gakuchika {
+            padding: var(--section-padding);
+            background-color: var(--bg-color);
+        }
+
+        .gakuchika-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .gakuchika-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gakuchika-text {
+            text-align: justify;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+
+        /* Process Steps Visualization */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .process-item {
+            background: #fcfcfc;
+            padding: 25px 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+        }
+
+        .process-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-color: var(--accent-color);
+        }
+
+        .process-icon {
+            width: 50px;
+            height: 50px;
+            background: #eef6ff;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.2rem;
+        }
+
+        .process-item h4 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .process-item p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .profile-univ {
+                justify-content: center;
+            }
+            
+            .skill-tags {
+                justify-content: center;
+            }
+
+            .gakuchika-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">My Portfolio</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#gakuchika">Works</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <h1>UEDA TATSUHIRO</h1>
+                <p>Nihon University / Applied Information Science</p>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="profile-card">
+                <!-- CSS-only Avatar Placeholder -->
+                <div class="profile-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="profile-info">
+                    <h3 class="profile-name">上田 達大 <span style="font-size: 1rem; font-weight: normal; margin-left: 10px;">(Ueda Tatsuhiro)</span></h3>
+                    <p class="profile-univ">
+                        <i class="fas fa-university"></i>
+                        日本大学 応用情報工学科
+                    </p>
+                    <p>
+                        情報技術を学ぶ大学生です。Web開発やアプリケーション制作に興味があり、日々技術の習得に励んでいます。
+                        課題解決に向けた論理的思考と、チームでの協調性を大切にしています。
+                    </p>
+                    <div class="skill-tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Teamwork</span>
+                        <span class="tag">Music</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gakuchika Section -->
+    <section id="gakuchika" class="gakuchika">
+        <div class="container">
+            <h2 class="section-title">Student Efforts</h2>
+            <div class="gakuchika-container">
+                <div class="gakuchika-title">
+                    <i class="fas fa-drum"></i> 軽音サークルでの活動：バンド演奏の完成度向上
+                </div>
+                
+                <div class="gakuchika-text">
+                    私は、軽音サークルでドラムを担当し、バンド演奏の完成度の向上に取り組みました。
+                    当初は個人演奏の経験しかなく、リズム維持が難しく、バンドの土台になれない点が課題でした。
+                    そこで、多忙な時でも毎日30分は必ず練習時間を確保し、サークルの友人に演奏を見てもらい客観的な改善点を洗い出しました。
+                    また、BPMを下げた状態から徐々に上げる段階的な練習を徹底しました。
+                    その結果、安定して演奏可能なBPMを170から原曲の185まで引き上げられ、メンバーの信頼を得てライブを成功させることができました。
+                    この経験から、継続力と周囲の意見を取り入れる柔軟性、高い目標も細分化して着実に取り組めば達成できることを学びました。
+                </div>
+
+                <!-- Visual Breakdown of the Text -->
+                <div class="process-grid">
+                    <div class="process-item">
+                        <div class="process-icon"><i class="fas fa-exclamation"></i></div>
+                        <h4>課題 (Challenge)</h4>
+                        <p>リズムキープが難しく、バンドの土台としての役割を果たせていなかった。</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-icon"><i class="fas fa-stopwatch"></i></div>
+                        <h4>行動 (Action)</h4>
+                        <p>毎日30分の練習確保と、客観的なフィードバックの収集。段階的なBPM練習。</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>結果 (Result)</h4>
+                        <p>BPM170→185への向上。メンバーからの信頼獲得とライブの成功。</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h4>学び (Learning)</h4>
+                        <p>継続力、柔軟性、そして目標細分化による達成プロセス。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tatsuhiro Ueda. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
