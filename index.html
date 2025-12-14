@@ -46,6 +46,12 @@
             list-style: none;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* --- Components --- */
         .container {
             width: 90%;
@@ -243,9 +249,37 @@
             gap: 10px;
         }
 
+        /* Gakuchika Layout Update for Image */
+        .gakuchika-content-wrapper {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 3rem;
+            align-items: flex-start;
+        }
+
+        .gakuchika-image-area {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .activity-photo {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 3px solid var(--white);
+            transition: transform 0.3s ease;
+        }
+        
+        .activity-photo:hover {
+            transform: scale(1.02);
+        }
+
+        .gakuchika-text-area {
+            flex: 2;
+        }
+
         .gakuchika-text {
             text-align: justify;
-            margin-bottom: 3rem;
             font-size: 1.05rem;
             line-height: 2;
         }
@@ -333,6 +367,24 @@
             .gakuchika-container {
                 padding: 25px;
             }
+
+            /* Responsive layout for image */
+            .gakuchika-content-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .gakuchika-image-area {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .activity-photo {
+                max-height: 300px;
+                object-fit: cover;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -405,13 +457,25 @@
                     <i class="fas fa-drum"></i> 軽音サークルでの活動：バンド演奏の完成度向上
                 </div>
                 
-                <div class="gakuchika-text">
-                    私は、軽音サークルでドラムを担当し、バンド演奏の完成度の向上に取り組みました。
-                    当初は個人演奏の経験しかなく、リズム維持が難しく、バンドの土台になれない点が課題でした。
-                    そこで、多忙な時でも毎日30分は必ず練習時間を確保し、サークルの友人に演奏を見てもらい客観的な改善点を洗い出しました。
-                    また、BPMを下げた状態から徐々に上げる段階的な練習を徹底しました。
-                    その結果、安定して演奏可能なBPMを170から原曲の185まで引き上げられ、メンバーの信頼を得てライブを成功させることができました。
-                    この経験から、継続力と周囲の意見を取り入れる柔軟性、高い目標も細分化して着実に取り組めば達成できることを学びました。
+                <div class="gakuchika-content-wrapper">
+                    <!-- Image Area -->
+                    <div class="gakuchika-image-area">
+                        <img src="image0.jpg" alt="ドラムセット" class="activity-photo" onerror="this.style.display='none'; document.getElementById('img-fallback-msg').style.display='block';">
+                        <!-- Fallback message in case image is missing locally -->
+                        <p id="img-fallback-msg" style="display:none; color:red; font-size:0.8rem; margin-top:5px;">※ image0.jpgを同じフォルダに配置してください</p>
+                    </div>
+
+                    <!-- Text Area -->
+                    <div class="gakuchika-text-area">
+                        <div class="gakuchika-text">
+                            私は、軽音サークルでドラムを担当し、バンド演奏の完成度の向上に取り組みました。
+                            当初は個人演奏の経験しかなく、リズム維持が難しく、バンドの土台になれない点が課題でした。
+                            そこで、多忙な時でも毎日30分は必ず練習時間を確保し、サークルの友人に演奏を見てもらい客観的な改善点を洗い出しました。
+                            また、BPMを下げた状態から徐々に上げる段階的な練習を徹底しました。
+                            その結果、安定して演奏可能なBPMを170から原曲の185まで引き上げられ、メンバーの信頼を得てライブを成功させることができました。
+                            この経験から、継続力と周囲の意見を取り入れる柔軟性、高い目標も細分化して着実に取り組めば達成できることを学びました。
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Visual Breakdown of the Text -->
